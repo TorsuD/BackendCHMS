@@ -3,10 +3,13 @@ const env = require("dotenv");
 const app = express();
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+let cors = require("cors");
 
 //routes
 const authRoutes = require("./routes/auth");
 const adminRoutes = require("./routes/admin/auth");
+
+app.use(cors());
 
 //environment variable
 env.config();

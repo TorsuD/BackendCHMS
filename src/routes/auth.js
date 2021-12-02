@@ -1,5 +1,12 @@
 const express = require("express");
-const { signup, signin, requireSignin } = require("../controller/auth");
+const {
+  signup,
+  signin,
+  requireSignin,
+  getUsers,
+  addUser,
+  searchUsers,
+} = require("../controller/auth");
 
 const {
   validateSignupRequest,
@@ -9,7 +16,11 @@ const {
 const router = express.Router();
 
 router.post("/signup", validateSignupRequest, isRequestValidated, signup);
-router.post("/signin", validateSigninRequest, isRequestValidated, signin);
+router
+  .post("/signin", validateSigninRequest, isRequestValidated, signin)
+  .get("/users", getUsers)
+  .post("/users/search", searchUsers)
+  .post("/users", addUser);
 
 // router.post("/profile", requireSignin, (req, res) => {
 //   res.status(200).json({ user: "profile" });
